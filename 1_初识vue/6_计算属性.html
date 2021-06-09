@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<!-- 准备容器 -->
+<div id="root">
+    姓：<input type="text" v-model="firstName">
+    <br>
+    名：<input type="text" v-model="lastName">
+    <br>
+    姓名：{{fullName}}
+</div>
+
+<script>
+    // 创建vue实例对象，并传入配置对象
+    new Vue({
+        // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
+        el:'#root',
+        // data是存储数据的地方
+        data:{
+            firstName:'张',
+            lastName:'三',
+            fullName:'张三'
+        },
+        // computed是计算属性
+        computed:{
+            getFullName() {
+                return this.firstName + ' - ' + this.lastName
+            }
+        },
+        // watch是监听
+        watch:{
+            firstName() {
+                this.fullName = this.firstName + ' - ' + this.lastName
+            },
+            lastName() {
+                this.fullName = this.firstName + ' - ' + this.lastName
+            },
+        }
+    })
+</script>
+
+</body>
+</html>

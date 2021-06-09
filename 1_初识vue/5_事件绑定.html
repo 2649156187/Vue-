@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<!-- 准备容器 -->
+<div id="root">
+    <!-- 绑定事件  -->
+    <button v-on:click="show1">按钮</button>
+    <!-- 绑定事件 —— 传递参数  -->
+    <button v-on:click="show2($event,text)">传递参数</button>
+    <!-- 绑定事件 —— 阻止默认行为 在click后添加.prevent  prevent 为 事件修饰符  -->
+    <a href="http://www.baidu.com" @click.prevent="show3()">阻止默认行为</a>
+    <!-- 绑定事件 —— 阻止冒泡 .stop 可连续使用  -->
+    <div @click="show3">
+        <a href="http://www.baidu.com" @click.stop.prevent="show4">阻止冒泡</a>
+    </div>
+    <!-- 键盘事件  -->
+    <input type="text" placeholder="按回车提示数据" @keydown.enter="show5">
+    <input type="text" placeholder="按回车提示数据" @keydown.13="show5">
+</div>
+
+<script>
+    // 创建vue实例对象，并传入配置对象
+    new Vue({
+        // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
+        el:'#root',
+        // data是存储数据的地方
+        data:{
+            text:"hello vue"
+        },
+        // methods用于配置方法
+        methods:{
+            show1(e) {
+                console.log("被点击",e.target.innerText)
+            },
+            show2(event,value) {
+                console.log(value)
+                console.log(event.target.innerText)
+            },
+            show3(event) {
+                alert("信息3")
+            },
+            show4() {
+                alert("信息4")
+            },
+            show5(e) {
+                console.log(e.target.value)
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
