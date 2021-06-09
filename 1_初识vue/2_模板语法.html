@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<!-- 准备容器 -->
+<div id="root">
+    <!-- 读取vue实例中data中text  -->
+    <!-- 模板语法  -->
+    <h1>{{text}}</h1>
+    <h4>{{msg}}</h4>
+    <hr>
+    <!-- 指令语法  -->
+    <a :href="url" >百度</a>
+    <input type="text" v-model="inputText">
+</div>
+
+<script>
+    // 创建vue实例对象，并传入配置对象
+    new Vue({
+        // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
+        el:'#root',
+        // data是存储数据的地方
+        data:{
+            text:"hello vue",
+            msg:'哈哈',
+            url:'http://www.baidu.com',
+            inputText:'张三'
+        }
+    })
+</script>
+
+</body>
+</html>
