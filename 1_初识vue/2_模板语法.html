@@ -8,15 +8,25 @@
 </head>
 <body>
 
+<!--
+    总结：
+        1.插值语法
+            功能：用于解析标签体内容
+            写法：{{ text }} text会作为表达式区解析，自动读取到data中的属性
+        2.指令语法
+            功能：用于解析标签(包括：标签属性、内容、绑定事件等)
+-->
+
+
 <!-- 准备容器 -->
 <div id="root">
     <!-- 读取vue实例中data中text  -->
-    <!-- 模板语法  -->
+    <!-- 插值语法  -->
     <h1>{{text}}</h1>
     <h4>{{msg}}</h4>
     <hr>
     <!-- 指令语法  -->
-    <a :href="url" >百度</a>
+    <a v-bind:href="url" >百度</a>
     <input type="text" v-model="inputText">
 </div>
 
