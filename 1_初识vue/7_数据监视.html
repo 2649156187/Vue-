@@ -14,9 +14,7 @@
     <br>
     名：<input type="text" v-model="lastName">
     <br>
-    姓名：{{fullName}}
-    <br>
-    姓名：<input type="text" v-model="getFullName">
+    姓名：{{firstName + '-' + lastName}}
 </div>
 
 <script>
@@ -30,25 +28,14 @@
             lastName:'三',
             fullName:'张三'
         },
-        // computed是计算属性
-        computed:{
-            // 简写
-            /*
-            getFullName() {
-                return this.firstName + '-' + this.lastName
-            }
-             */
-            // 完整版
-            getFullName:{
-                set(value) {
-                    const arr = value.split('-')
-                    this.firstName = arr[0]
-                    this.lastName = arr[1]
-                },
-                get() {
-                    return this.firstName + '-' + this.lastName
-                }
-            }
+        // watch是监听
+        watch:{
+            firstName() {
+                this.fullName = this.firstName + '-' + this.lastName
+            },
+            lastName() {
+                this.fullName = this.firstName + '-' + this.lastName
+            },
         }
     })
 </script>
