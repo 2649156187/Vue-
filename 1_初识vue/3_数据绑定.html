@@ -18,7 +18,7 @@
 <!--  双向数据绑定  -->
     <div>
         <span>双向数据绑定</span>
-        <input type="text" v-model="text">
+        <input type="text" v-model:value="text">
     </div>
     <div>
         <span>源数据：</span>
@@ -28,14 +28,20 @@
 
 <script>
     // 创建vue实例对象，并传入配置对象
-    new Vue({
+    const vm = new Vue({
         // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
         el:'#root',
         // data是存储数据的地方
-        data:{
-            text:"hello",
+        data(){
+            return {
+                text:"hello",
+            }
         }
     })
+    // 修改后页面自动更新
+    setTimeout(() => {
+        vm.$data.text = "张三"
+    },2000)
 </script>
 
 </body>
