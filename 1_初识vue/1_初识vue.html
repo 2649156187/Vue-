@@ -16,14 +16,17 @@
 
 <script>
     // 创建vue实例对象，并传入配置对象
-    new Vue({
+    const vm = new Vue({
         // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
-        el:'#root',
+        // el:'#root',
         // data是存储数据的地方
         data:{
             text:"hello vue"
         }
     })
+    // 指定容器
+    vm.$mount('#root')
+
 </script>
 
 </body>

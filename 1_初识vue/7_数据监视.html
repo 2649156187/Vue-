@@ -19,7 +19,7 @@
 
 <script>
     // 创建vue实例对象，并传入配置对象
-    new Vue({
+    const vm = new Vue({
         // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
         el:'#root',
         // data是存储数据的地方
@@ -30,12 +30,17 @@
         },
         // watch是监听
         watch:{
-            firstName() {
-                this.fullName = this.firstName + '-' + this.lastName
-            },
-            lastName() {
-                this.fullName = this.firstName + '-' + this.lastName
-            },
+            firstName(newValue,oldValue) {
+                this.fullName = newValue + '-' + this.lastName
+            }
+        }
+    })
+
+    // 数据监听另一种写法
+    vm.$watch('lastName',{
+        immediate:true,
+        handler(newValue,oldValue) {
+            this.fullName = this.firstName + '-' + newValue
         }
     })
 </script>
