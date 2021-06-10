@@ -23,26 +23,42 @@
         // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
         el:'#root',
         // data是存储数据的地方
-        data:{
-            firstName:'张',
-            lastName:'三',
-            fullName:'张三'
+        data(){
+            return {
+                firstName:'张',
+                lastName:'三',
+                fullName:''
+            }
         },
         // watch是监听
         watch:{
+            // 函数写法
             firstName(newValue,oldValue) {
                 this.fullName = newValue + '-' + this.lastName
+            },
+
+            // 完整写法
+            lastName:{
+                // 若immediate为true则handler在初始化时就会调用一次
+                immediate:true,
+                handler(newValue,oldValue) {
+                    this.fullName = this.firstName + '-' + newValue
+                }
             }
+
+
         }
     })
 
     // 数据监听另一种写法
+    /*
     vm.$watch('lastName',{
         immediate:true,
         handler(newValue,oldValue) {
             this.fullName = this.firstName + '-' + newValue
         }
     })
+     */
 </script>
 
 </body>

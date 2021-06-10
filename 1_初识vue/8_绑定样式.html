@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <style>
+        .classA{
+            background: aqua;
+        }
+        .classB{
+            color: red;
+        }
+        .classC{
+            text-shadow: 2px 2px 3px yellow;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- 准备容器 -->
+<div id="root">
+    <!--  class的字符串写法 适用于类名不确定，要动态获取  -->
+    <h2 :class="className">{{ text }}</h2>
+    <!--  class的对象写法 适用于类名确定，但不确定用不用  -->
+    <h2 :class="{classB:class_B_Flag,classC:class_C_Flag}">{{ text }}</h2>
+    <!--  class的数组写法 适用于应用多个class  -->
+    <h2 :class="[className,'classB','classC']">{{ text }}</h2>
+</div>
+
+<script>
+    // 创建vue实例对象，并传入配置对象
+    const vm = new Vue({
+        // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
+        el:'#root',
+        // data是存储数据的地方
+        data(){
+            return {
+                text:"hello vue",
+                className:'classA',
+                // 是否使用classB样式
+                class_B_Flag:true,
+                // 是否使用classC样式
+                class_C_Flag:true
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
