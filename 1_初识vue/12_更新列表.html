@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<!-- 准备容器 -->
+<div id="root">
+    <button @click="changeData">更新马冬梅</button>
+    <ul>
+        <li v-for="el in persons">{{ el.name }}--{{ el.sex }}--{{ el.age }}岁</li>
+    </ul>
+</div>
+
+<script>
+    // 创建vue实例对象，并传入配置对象
+    const vm = new Vue({
+        // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
+        el:'#root',
+        // data是存储数据的地方
+        data:{
+            // 搜索框内容
+            searchValue:'',
+            // 排序类别 0：不排序 1：升序 2：降序
+            sortType:0,
+            persons:[
+                {id:'001',name:"马冬梅",age:35,sex:"女"},
+                {id:'002',name:"周冬雨",age:25,sex:"女"},
+                {id:'003',name:"周杰伦",age:40,sex:"男"},
+                {id:'004',name:"温兆伦",age:30,sex:"男"},
+            ],
+
+        },
+        methods:{
+            changeData() {
+                this.persons[0] = {id:'001',name:"马什么梅",age:99,sex:"男"}
+                // 直接赋值不会调取vue更新视图
+                this.persons.push()
+            }
+        }
+
+
+    })
+</script>
+
+</body>
+</html>
