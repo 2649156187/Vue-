@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<!-- 准备容器 -->
+<div id="root">
+    <form @submit.prevent="submit">
+        账号
+        <input type="text" id="account" v-model="form.account">
+        <br>
+
+        密码
+        <input type="password" id="password" v-model="form.password">
+        <br>
+
+        性别
+        <input type="radio" name="sex" value="男" v-model="form.sex">男
+        <input type="radio" name="sex" value="女" v-model="form.sex">女
+        <br>
+
+        爱好
+        <!-- 若未配置value则v-model监听checked值 -->
+        <input type="checkbox" value="抽烟" v-model="form.hobby"> 抽烟
+        <input type="checkbox" value="喝喝酒" v-model="form.hobby"> 喝酒
+        <input type="checkbox" value="烫头" v-model="form.hobby"> 烫头
+        <br>
+
+        所属地区
+        <select v-model="form.city">
+            <option value="">请选择地区</option>
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+        </select>
+        <br>
+
+        其他信息
+        <textarea cols="30" rows="2" v-model="form.info"></textarea>
+        <br>
+
+        <input type="checkbox" v-model="form.agree">阅读并接受 <a href="http://www.baidu.com">《用户协议》</a>
+        <br>
+
+        <button>提交</button>
+
+    </form>
+</div>
+
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            form:{
+                // 账户
+                account:'',
+                // 密码
+                password:'',
+                // 性别
+                sex:'',
+                // 爱好
+                hobby:[],
+                // 所属地区
+                city:'',
+                // 其他信息
+                info:'',
+                // 是否同意协议
+                agree:false
+            }
+        },
+        methods:{
+            submit() {
+                console.log(this.form)
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
