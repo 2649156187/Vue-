@@ -12,8 +12,6 @@
 <div id="root">
     <h2>当前求和为：<span id="sum">{{ sum }}</span></h2>
     <button @click="sum += 1">增加</button>
-    <br>
-    <button onclick="bind">绑定</button>
     <button @click="destroy">卸载</button>
 </div>
 
@@ -21,11 +19,6 @@
 
     // 关闭开发环境提示
     Vue.config.productionTip = false
-
-    // 绑定vm
-    function bind() {
-        vm.$mount("#root")
-    }
 
     // 创建vue实例对象，并传入配置对象
     const vm = new Vue({
