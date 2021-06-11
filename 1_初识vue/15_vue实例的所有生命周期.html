@@ -12,12 +12,20 @@
 <div id="root">
     <h2>当前求和为：<span id="sum">{{ sum }}</span></h2>
     <button @click="sum += 1">增加</button>
+    <br>
+    <button onclick="bind">绑定</button>
+    <button @click="destroy">卸载</button>
 </div>
 
 <script>
 
     // 关闭开发环境提示
     Vue.config.productionTip = false
+
+    // 绑定vm
+    function bind() {
+        vm.$mount("#root")
+    }
 
     // 创建vue实例对象，并传入配置对象
     const vm = new Vue({
@@ -27,32 +35,66 @@
         data:{
             sum:0
         },
+        methods:{
+            destroy() {
+                this.$destroy()
+            }
+        },
         // 初始化生命周期的钩子和事件
         beforeCreate() { // 几乎不用
             // 数据代理未完成，data和methods都未创建
             console.log("-- beforeCreate --")
-            console.log("sum = ",this.sum)
+            // console.log("sum = ",this.sum)
+            // debugger
         },
         // vue实例初始化完毕
         created() {
             // 完成数据代理，但未驱动页面
             console.log("-- created --")
-            console.log("sum = ",this.sum)
+            // console.log("sum = ",this.sum)
+            // debugger
         },
         // vue实例挂在之前（解析虚拟DOM，更新DOM之前，无法获得解析后的DOM）
         beforeMount() {
             console.log("-- beforeMount --")
-            const sum = document.getElementById("sum")
-            sum.innerText = "哈哈"
-            console.log("sum = ",sum)
+            // const sum = document.getElementById("sum")
+            // sum.innerText = "哈哈"
+            // console.log("sum = ",sum)
+            // debugger
         },
         // 模板解析完成
         mounted() {
-
+            console.log("-- mounted --")
+            /*
+            const h2 = document.getElementById("sum")
+            h2.innerText = '99'
+            console.log(h2)
+            debugger
+             */
+        },
+        // vue实例将要更新页面
+        beforeUpdate() {
+            // 数据是新的，但是页面没有更新
+            console.log("-- beforeUpdate --")
+            // console.log("sum = ",this.sum)
+            // debugger
+        },
+        /** 重新将虚拟DOM转换为真实DOM **/
+        // vue实例更新页面之后
+        updated() {
+            // 数据是新的，页面也更新完了
+            console.log("-- updated --")
+        },
+        // 将要销毁vue实例
+        beforeDestroy(){
+            // vue实例中所以属性，有都处于可用状态
+            console.log("-- beforeDestroy --")
+        },
+        /** 移除所有事件监听 **/
+        // 销毁完vue实例之后
+        destroyed() { // 几乎不用
+            console.log("-- destroyed --")
         }
-
-
-
     })
 
 </script>
