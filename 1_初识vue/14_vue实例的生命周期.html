@@ -10,8 +10,8 @@
 
 <!-- 准备容器 -->
 <div id="root">
-    <h2 :style="opacity">饿了怎么办？</h2>
-    <button>干饭去</button>
+    <h2 :style="{opacity}">饿了怎么办？</h2>
+    <button @click="eat">干饭去</button>
 </div>
 
 <script>
@@ -21,17 +21,30 @@
         el:'#root',
         // data是存储数据的地方
         data:{
-            opacity:1
+            opacity:1,
+            timer:''
         },
         methods:{
-            changeData() {
-                this.persons[0] = {id:'001',name:"马什么梅",age:99,sex:"男"}
-                // 直接赋值不会调取vue更新视图
-                this.persons.push()
+            eat() {
+                // 销毁vue实例（解除vm的挂载），但html结构还在
+                this.$destroy() // 移除所有状态的监听
             }
+        },
+        // 生命周期 钩子函数
+
+        // vue实例挂载完毕
+        mounted() {
+            console.log("vm开始管理root容器")
+            this.timer = setInterval(() => {
+                this.opacity -= 0.01
+                if (this.opacity <= 0) this.opacity = 1
+            },16)
+        },
+        // vue实例将要被销毁
+        beforeDestroy() {
+            console.log("定时器被清除")
+            clearInterval(this.timer)
         }
-
-
     })
 </script>
 

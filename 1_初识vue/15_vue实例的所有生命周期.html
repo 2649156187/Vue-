@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+
+<!-- 准备容器 -->
+<div id="root">
+    <h2>当前求和为：<span id="sum">{{ sum }}</span></h2>
+    <button @click="sum += 1">增加</button>
+</div>
+
+<script>
+
+    // 关闭开发环境提示
+    Vue.config.productionTip = false
+
+    // 创建vue实例对象，并传入配置对象
+    const vm = new Vue({
+        // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
+        el:'#root',
+        // data是存储数据的地方
+        data:{
+            sum:0
+        },
+        // 初始化生命周期的钩子和事件
+        beforeCreate() { // 几乎不用
+            // 数据代理未完成，data和methods都未创建
+            console.log("-- beforeCreate --")
+            console.log("sum = ",this.sum)
+        },
+        // vue实例初始化完毕
+        created() {
+            // 完成数据代理，但未驱动页面
+            console.log("-- created --")
+            console.log("sum = ",this.sum)
+        },
+        // vue实例挂在之前（解析虚拟DOM，更新DOM之前，无法获得解析后的DOM）
+        beforeMount() {
+            console.log("-- beforeMount --")
+            const sum = document.getElementById("sum")
+            sum.innerText = "哈哈"
+            console.log("sum = ",sum)
+        },
+        // 模板解析完成
+        mounted() {
+
+        }
+
+
+
+    })
+
+</script>
+
+</body>
+</html>
