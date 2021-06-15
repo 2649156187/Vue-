@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入vue  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+</head>
+<body>
+
+
+<!--
+    常用内置指令
+        v-text      :   更新元素的innnerText
+        v-html      :   更新元素的innerHTML
+        v-if        :   条件渲染(动态空时节点是否存在)
+        v-else      :   条件渲染(动态空时节点是否存在)
+        v-show      :   条件渲染(动态控制display)
+        v-for       :   遍历数组/对象
+        v-on        :   绑定事件监听，可简写为 @
+        v-bind:xx   :   强制绑定解析表达式，可简写为 :xxx
+        v-model     :   双向数据绑定
+-->
+
+<!-- 准备容器 -->
+<div id="root">
+    <a :href="url">{{ title }}</a>
+    <br>
+    <a :href="url" v-text="title"></a>
+    <br>
+    <div v-html="htmlStr"></div>
+</div>
+
+<script>
+
+    // 创建vue实例对象，并传入配置对象
+    const vm = new Vue({
+        // el是用于指定当前vue实例为那个容器服务，值是选择器字符串
+        el:'#root',
+        // data是存储数据的地方
+        data:{
+            url:'www.baidu.com',
+            title:'百度一下',
+            htmlStr: '<h3>欢迎使用Vue</h3>',
+        },
+        methods:{
+        },
+    })
+
+</script>
+
+</body>
+</html>
