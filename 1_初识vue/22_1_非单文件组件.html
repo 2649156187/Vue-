@@ -7,6 +7,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 <body>
+
+<div id="root">
+    <School></School>
+</div>
+
+
 <script>
 
     /**
@@ -14,22 +20,48 @@
      *      1.如何定义一个组件：使用Vue.extend(options)创建
      *      2.School的本质是一个构造函数，我们以后写<School/>,vue帮我们去new School
      *      3.Vue.extend(options)中的options是配置对象，这个配置对象几乎和new Vue时的options一样，区别如下：
-     *          (1).不能写el去指定容器，所有组件最终要被一个vm所管理，vm中会指定好el
-     *          (2).data只能写成function格式
-     *          (3).
+     *          (1).不能写el去指定容器，所有组件最终要被一个vm所管理，vm中会指定好el，即：组件放入哪个容器
+     *          (2).data只能写成function格式，
+     *          (3).组件的模板结构，要配置在template属性中,值为html字符串,而且要用模板字符串
+     *                  a.模板结构必须只有一个根标签
+     *                  b.
      *          (4).
      *          (5).
      */
 
     const School = Vue.extend({
+        // template中配置模板结构
+        template:`
+          <div>
+              <h2>名字：{{ name }}</h2>
+          </div>
+        `,
         data(){
             return {
                 name:"张三"
             }
         }
-
     })
 
+    /**
+     * 组件使用基本流程
+     * 1.定义组件
+     * 2.注册组件
+     *      a.全局注册
+     *      b.局部注册
+     */
+
+    // a.全局注册
+    // Vue.component('School',School)
+
+    // 管理组件
+    new Vue({
+        el:'#root',
+        // 局部注册
+        components:{
+            School
+        }
+    })
 
 </script>
 </body>
