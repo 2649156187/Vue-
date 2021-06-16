@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>localStorage</h2>
+<button id="btn1">保存数据</button>
+<button id="btn2">读取数据</button>
+<button id="btn3">删除数据</button>
+<button id="btn4">清空数据</button>
+
+<h2>localStorage</h2>
+<button onclick=""></button>
+
+
+<script>
+
+    let arr = [1,2,3,4,5,6,7,8,9]
+    let obj = {name:'张三',age:19}
+
+    const btn1 = document.getElementById('btn1')
+    btn1.onclick = () => {
+        localStorage.setItem('name',JSON.stringify(obj))
+    }
+
+    const btn2 = document.getElementById('btn2')
+    btn2.onclick = () => {
+        console.log(JSON.parse(localStorage.getItem('name')))
+    }
+
+    const btn3 = document.getElementById('btn3')
+    btn3.onclick = () => {
+        localStorage.removeItem('name')
+    }
+
+    const btn4 = document.getElementById('btn4')
+    btn4.onclick = () => {
+        localStorage.clear()
+    }
+</script>
+
+</body>
+</html>
