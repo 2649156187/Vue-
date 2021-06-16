@@ -3,6 +3,10 @@
 </template>
 
 <script>
+/* eslint-disable */
+
+const a = 1
+
 export default {
   name: "Hello",
   data() {
